@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+HTML Widget for HTML Sliding Image.
+-->
+<HTMLWidget name="SpinIt" formatNumber="4" localization="none" creator="Goker Cebeci" defaultWidth="200" defaultHeight="200" minWidth="20" minHeight="20" isResponsive="true">
+	<parameters>
+		<number name="speed" label="Speed:" min="0" max="20" step=".1" defaultValue="2"/>
+		<file name="imageURL" label="Image" filterLabel="Images" fileTypes="*.svg;*.jpg;*.jpeg;*.png;*.gif" fileRequiredForOutput="true" toolTip="Choose an image to slide into view"/>
+		<builtIn name="width"/>
+        <builtIn name="height"/>
+		<builtIn name="itemUID"/>
+	</parameters>
+	<headHTML>
+<![CDATA[
+<style>
+@-webkit-keyframes spin{
+    0%{
+    -moz-transform: rotateZ(0deg);
+    -webkit-transform: rotateZ(0deg);
+    -o-transform: rotateZ(0deg);
+    -ms-transform: rotateZ(0deg);
+    }
+    100%{
+    -moz-transform: rotateZ(360deg);
+    -webkit-transform: rotateZ(360deg);
+    -o-transform: rotateZ(360deg);
+    -ms-transform: rotateZ(360deg);
+    }
+}
+@-moz-keyframes spin{
+    0%{
+    -moz-transform: rotateZ(0deg);
+    -webkit-transform: rotateZ(0deg);
+    -o-transform: rotateZ(0deg);
+    -ms-transform: rotateZ(0deg);
+    }
+    100%{
+    -moz-transform: rotateZ(360deg);
+    -webkit-transform: rotateZ(360deg);
+    -o-transform: rotateZ(360deg);
+    -ms-transform: rotateZ(360deg);
+    }
+}
+@-o-keyframes spin{
+    0%{
+    -moz-transform: rotateZ(0deg);
+    -webkit-transform: rotateZ(0deg);
+    -o-transform: rotateZ(0deg);
+    -ms-transform: rotateZ(0deg);
+    }
+    100%{
+    -moz-transform: rotateZ(360deg);
+    -webkit-transform: rotateZ(360deg);
+    -o-transform: rotateZ(360deg);
+    -ms-transform: rotateZ(360deg);
+    }
+}
+@-ms-keyframes spin{
+    0%{
+    -moz-transform: rotateZ(0deg);
+    -webkit-transform: rotateZ(0deg);
+    -o-transform: rotateZ(0deg);
+    -ms-transform: rotateZ(0deg);
+    }
+    100%{
+    -moz-transform: rotateZ(360deg);
+    -webkit-transform: rotateZ(360deg);
+    -o-transform: rotateZ(360deg);
+    -ms-transform: rotateZ(360deg);
+    }
+}
+</style>
+]]>
+	</headHTML>
+	<pageItemHTML>
+<![CDATA[
+<div id="{param_itemUID}_spin" style="width:{param_width}px;height:{param_height}px;background-image:url({param_imageURL})"></div>
+]]>
+	</pageItemHTML>
+	
+	<documentReadyJS>
+<![CDATA[
+(function () {
+        $("#{param_itemUID}_spin").css("transform-origin","50% 50%");
+        $("#{param_itemUID}_spin").css("background-size","contain");
+        $("#{param_itemUID}_spin").css("-webkit-animation","spin "+{param_speed}+"s infinite linear");
+        $("#{param_itemUID}_spin").css("-moz-animation","spin "+{param_speed}+"s infinite linear");
+        $("#{param_itemUID}_spin").css("-o-animation","spin "+{param_speed}+"s infinite linear");
+        $("#{param_itemUID}_spin").css("-ms-animation","spin "+{param_speed}+"s infinite linear");
+	})()
+]]>
+    </documentReadyJS>
+</HTMLWidget>
